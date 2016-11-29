@@ -1,0 +1,12 @@
+.box1 {
+  margin-top: 7rs;
+  @include grid-span(5, 8);
+}
+
+.box2 {
+  @include grid-span(7, 1);
+}
+
+.box3 {
+  clear: both;
+}

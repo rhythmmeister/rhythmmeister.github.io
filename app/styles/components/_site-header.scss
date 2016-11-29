@@ -1,0 +1,64 @@
+.site-header {
+  position: relative;
+  @include clearfix;
+  padding-top: 6rs;
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    transition: opacity $speed $easing;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    height: 100%;
+    background: lightgray url('../images/background.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  h1, h2, h3 {
+    color: white;
+    clear: left;
+  }
+
+  h1 {
+    @include grid-span(8, 1);
+    clear: none;
+  }
+
+  .button-wrapper {
+    clear: both;
+
+    em {
+      user-select: none;
+      font-weight: normal;
+    }
+  }
+
+  .toggle-grid-visibility {
+    float: right;
+    margin-left: -100%;
+    margin-top: 2rs;
+
+    &:hover {
+      background-color: orangered;
+      color: white;
+    }
+  }
+}
+
+.has-visible-vertical-rhythm-grid {
+  .site-header:before {
+    opacity: .5;
+  }
+
+  .toggle-grid-visibility {
+    background-color: white;
+    color: orangered;
+
+    &:hover {
+      background-color: white;
+      color: orangered;
+    }
+  }
+}
