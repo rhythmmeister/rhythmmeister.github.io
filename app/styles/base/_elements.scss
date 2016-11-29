@@ -3,6 +3,7 @@ html {
   padding: 0;
   position: relative;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 html, body {
@@ -18,7 +19,7 @@ body {
 
 h1, h2, h3, h4, p {
   margin: 0;
-  
+
   &.suffix {
     display: inline-block;
     vertical-align: top;

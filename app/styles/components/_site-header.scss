@@ -2,6 +2,9 @@
   position: relative;
   @include clearfix;
   padding-top: 6rs;
+  padding-bottom: 4rs;
+  margin-bottom: 4rs;
+
   &:before {
     content: '';
     position: absolute;
@@ -28,17 +31,24 @@
 
   .button-wrapper {
     clear: both;
+    margin-bottom: 6rs;
 
     em {
       user-select: none;
       font-weight: normal;
+      margin-right: 6px;
+    }
+
+    span {
+      font-weight: bold;
     }
   }
 
   .toggle-grid-visibility {
     float: right;
     margin-left: -100%;
-    margin-top: 2rs;
+    margin-top: 4rs;
+    color: white;
 
     &:hover {
       background-color: orangered;

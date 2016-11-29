@@ -5,6 +5,7 @@
 
 .box2 {
   @include grid-span(7, 1);
+  margin-bottom: 4rs;
 }
 
 .box3 {
