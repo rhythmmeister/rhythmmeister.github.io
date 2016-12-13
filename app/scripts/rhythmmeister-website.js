@@ -12,10 +12,13 @@ window.process = {
 };
 
 $(function() {
+    var cssStyles;
+
     fetch('styles/styles.css').then(function (response) {
         return response.text();
     }).then(function (cssContents) {
-        renderCss(cssContents)
+        cssStyles = cssContents;
+        renderCss(cssStyles);
     });
 
     $(document).bind('keydown', 'ctrl+\\', function () {
@@ -51,15 +54,25 @@ $(function() {
     document.getElementById('code-editor-1').style.fontSize='14px';
 
     editor1.getSession().on('change', function(e) {
-        renderCss();
+        renderCss(cssStyles);
     });
 
     function renderCss(cssContents) {
-        var fontPresets = JSON.parse(editor1.getValue());
+        try {
+            var fontPresets = JSON.parse(editor1.getValue());
 
-        postcss([ nested, rhythmmeister.processor(fontPresets) ]).process(cssContents).then(function (result) {
-            $('#dynamic-css').remove();
-            $('<style id="dynamic-css"></style>').appendTo('head').html(result.css);
-        });
+            postcss([ nested, rhythmmeister.processor(fontPresets) ]).process(cssContents).then(function (result) {
+                $('#dynamic-css').remove();
+                $('<style id="dynamic-css"></style>').appendTo('head').html(result.css);
+
+                setTimeout(function () {
+                    editor1.resize();
+                }, 2000);
+
+            });
+        }
+        catch (e) {
+
+        }
     }
 });
