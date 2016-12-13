@@ -55,27 +55,8 @@ gulp.task('sass-serve', function() {
     .pipe(browserSync.stream());
 });
 
-// Compile and minify sass for production without comments and debug info.
-gulp.task('sass-build', function() {
-    var fontPresets = rhythmmeister.load(path.resolve('./font-presets'));
-    var processors = [
-        rhythmmeister.processor(fontPresets)
-    ];
-
-    gulp.src(['sass/**/*.{scss,sass}'])
-    .pipe(sassGlob())
-    .pipe(autoprefixer('last 2 versions'))
-    .pipe(sass())
-    .pipe(postcss(processors))
-    .pipe(gulp.dest('css'));
-});
-
 // Development task.
-gulp.task('serve', ['browsersync', 'sass-serve'], function() {
-    gulp.watch(['app/styles/**/*.scss', 'app/font-presets.json'], function () {
-        gulp.run('sass-serve');
-    });
-
+gulp.task('serve', ['browsersync'], function() {
     gulp.watch(['app/index.html'], function () {
         browserSync.reload()
     });

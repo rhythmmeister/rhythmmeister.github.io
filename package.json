@@ -62,8 +62,12 @@
       "ace": "github:ajaxorg/ace-builds@^1.2.6",
       "jeresig/jquery.hotkeys": "github:jeresig/jquery.hotkeys@^0.2.0",
       "jquery": "npm:jquery@^3.1.1",
+      "nodelibs": "github:jspm/nodelibs@^0.1.9",
       "plugin-babel": "npm:systemjs-plugin-babel@^0.0.17",
-      "postcss": "npm:postcss@^5.2.6"
+      "postcss": "npm:postcss@^5.2.6",
+      "postcss-nested": "npm:postcss-nested@^1.0.0",
+      "postcss-nesting": "npm:postcss-nesting@^2.3.1",
+      "rhythmmeister": "npm:rhythmmeister@^1.0.0"
     },
     "devDependencies": {},
     "peerDependencies": {

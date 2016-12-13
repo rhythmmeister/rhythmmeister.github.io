@@ -44,12 +44,17 @@ SystemJS.config({
     "events": "npm:jspm-nodelibs-events@0.2.0",
     "fs": "npm:jspm-nodelibs-fs@0.2.0",
     "ace": "github:ajaxorg/ace-builds@1.2.6",
+    "jeresig/jquery.hotkeys": "github:jeresig/jquery.hotkeys@0.2.0",
     "jquery": "npm:jquery@3.1.1",
+    "nodelibs": "github:jspm/nodelibs@0.1.9",
     "os": "npm:jspm-nodelibs-os@0.2.0",
     "path": "npm:jspm-nodelibs-path@0.2.1",
     "plugin-babel": "npm:systemjs-plugin-babel@0.0.17",
     "postcss": "npm:postcss@5.2.6",
+    "postcss-nested": "npm:postcss-nested@1.0.0",
+    "postcss-nesting": "npm:postcss-nesting@2.3.1",
     "process": "npm:jspm-nodelibs-process@0.2.0",
+    "rhythmmeister": "npm:rhythmmeister@1.0.0",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
     "util": "npm:jspm-nodelibs-util@0.2.1",
@@ -286,6 +291,31 @@ SystemJS.config({
         "buffer-shims": "npm:buffer-shims@1.0.0",
         "process-nextick-args": "npm:process-nextick-args@1.0.7",
         "util-deprecate": "npm:util-deprecate@1.0.2"
+      }
+    },
+    "npm:rhythmmeister@1.0.0": {
+      "map": {
+        "datauri": "npm:datauri@1.0.5",
+        "parse-unit": "npm:parse-unit@1.0.1",
+        "process": "npm:jspm-nodelibs-process@0.2.0"
+      }
+    },
+    "npm:datauri@1.0.5": {
+      "map": {
+        "mimer": "npm:mimer@0.2.1",
+        "image-size": "npm:image-size@0.3.5",
+        "semver": "npm:semver@5.3.0",
+        "process": "npm:jspm-nodelibs-process@0.2.0"
+      }
+    },
+    "npm:postcss-nesting@2.3.1": {
+      "map": {
+        "postcss": "npm:postcss@5.2.6"
+      }
+    },
+    "npm:postcss-nested@1.0.0": {
+      "map": {
+        "postcss": "npm:postcss@5.2.6"
       }
     }
   }
