@@ -35,7 +35,7 @@ gulp.task('browsersync', function() {
 
 // Compile sass for development with comments and debug info.
 gulp.task('sass-serve', function() {
-    var fontPresets = rhythmmeister.load(path.resolve('./app/font-presets'));
+    var fontPresets = rhythmmeister.load(path.resolve('./app/rhythmmeister'));
 
     var processors = [
         rhythmmeister.processor(fontPresets)
@@ -74,6 +74,10 @@ gulp.task('sass-build', function() {
 gulp.task('serve', ['browsersync', 'sass-serve'], function() {
     gulp.watch(['app/styles/**/*.scss', 'app/font-presets.json'], function () {
         gulp.run('sass-serve');
+    });
+
+    gulp.watch(['app/index.html'], function () {
+        browserSync.reload()
     });
 });
 

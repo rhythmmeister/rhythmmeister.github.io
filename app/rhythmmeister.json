@@ -37,10 +37,10 @@
     },
     "xxxl": {
       "rows": 12,
-      "base-line-percentage": 0.75,
+      "base-line-percentage": 0.73,
       "font-family": "'Open Sans', serif",
       "font-weight": 600,
-      "font-size": "174px",
+      "font-size": "154px",
       "letter-spacing": ".4px",
       "font-style": "normal"
     }

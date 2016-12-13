@@ -28,6 +28,7 @@
     "gulp-sourcemaps": "^1.5.0",
     "gulp-uglify": "^1.1.0",
     "gulp-useref": "^3.0.0",
+    "jspm": "^0.17.0-beta.32",
     "main-bower-files": "^2.5.0",
     "postcss": "^5.2.6",
     "rhythmmeister": "^1.0.0",
@@ -44,6 +45,52 @@
         2,
         "single"
       ]
+    }
+  },
+  "jspm": {
+    "name": "rhythmmeister-website",
+    "main": "rhythmmeister-website.js",
+    "directories": {
+      "lib": ".app/src",
+      "dist": ".app/dist",
+      "baseURL": "app"
+    },
+    "configFiles": {
+      "jspm": "app/scripts/jspm.config.js"
+    },
+    "dependencies": {
+      "ace": "github:ajaxorg/ace-builds@^1.2.6",
+      "jeresig/jquery.hotkeys": "github:jeresig/jquery.hotkeys@^0.2.0",
+      "jquery": "npm:jquery@^3.1.1",
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.17"
+    },
+    "devDependencies": {},
+    "overrides": {
+      "github:ajaxorg/ace-builds@1.2.6": {
+        "main": "ace",
+        "format": "global",
+        "directories": {
+          "lib": "src-noconflict"
+        },
+        "map": {
+          "ace": "."
+        },
+        "meta": {
+          "ace.js": {
+            "exports": "ace",
+            "format": "global"
+          },
+          "*.js": {
+            "deps": [
+              "ace/ace"
+            ],
+            "format": "global"
+          }
+        }
+      },
+      "npm:jquery@3.1.1": {
+        "format": "amd"
+      }
     }
   }
 }

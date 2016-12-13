@@ -45,14 +45,13 @@
 }
 
 .section-code {
-  background-color: #111111;
-  padding-left: 3rs;
-  margin-top: 8rs;
+  margin-top: 7rs;
+  overflow: auto;
+}
 
-  pre {
-    padding-top: 2rs;
-    font-preset: s;
-    padding-bottom: 2rs;
+.section.json-presets {
+  .section-code {
+    height: 56rs;
   }
 }
 
@@ -62,6 +61,7 @@
     right: 0;
     width: 100%;
     color: orangered;
+    top: 24rs;
     text-align: right;
     border-bottom: 2px solid orangered;
   }
@@ -73,9 +73,7 @@
     top: 17rs;
     right: 0;
     color: orangered;
-    //@include vertical-rhythm(0, 0, 0, 0, s);
     border-bottom: 2px solid orangered;
-
   }
 
   .letters {
@@ -98,9 +96,9 @@
 }
 
 .section.installation .section-image {
-  top: 6rs;
-  bottom: 3rs;
-  background: url('../images/bower-logo.svg') no-repeat center center;
+  top: 7rs;
+  bottom: 0rs;
+  background: url('../images/npm-logo.svg') no-repeat left center;
   background-size: contain;
 }
 

@@ -17,7 +17,13 @@
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    
+
+      <script src="jspm_packages/system.js"></script>
+      <script src="scripts/jspm.config.js"></script>
+      <script>
+          SystemJS.import('scripts/rhythmmeister-website.js');
+      </script>
+
   </head>
   <body>
 
@@ -30,7 +36,7 @@
       <h2 class="box2">The holy grail of web design.<br>This tool helps you align everything pixel perfectly on a vertical grid.</h2>
       <div class="box1"></div>
       <div class="button-wrapper">
-        <a href="https://github.com/danielbeeke/rhythmmeister" target="_blank" class="button primary">Checkout github</a>
+        <a href="https://github.com/rhythmmeister/rhythmmeister" target="_blank" class="button primary">Checkout github</a>
         <h3 class="suffix"> <em>or </em><span>npm install rhythmmeister --save-dev</span></h3>
       </div>
     </header>
@@ -39,9 +45,9 @@
       <div class="section introduction">
         <div class="section-content">
           <h2 class="section-title">Introduction</h2>
-          <p>Print has solved typography problems ages ago. Things like the baseline and kerning are industry standards, the web however evolving from hypertext not so much.</p>
-          <p>The main problem lies in the use of line-height instead of a base-line. RhythmMeister provides a sass mixin so you can use the base-line instead of the line-height.</p>
-          <p>It provides this via a simple trick. It sets the line-height to the selected rows and than it adds a little padding to the top and the bottom.</p>
+          <p>Print has solved typography problems ages ago. Things like the baseline and kerning are industry standards, the web however evolving from hypertext does not use these standards.</p>
+          <p>The main problem lies in the use of line-height instead of a base-line. RhythmMeister provides a css extension so you can use <em>base-line</em> instead of <em>line-height</em>.</p>
+          <p>It provides this via a clever trick. It sets the line-height to the selected rows and than it adds a little padding to the top and the bottom.</p>
         </div>
         <div class="section-image">
           <div class="letters">Rhy</div>
@@ -52,40 +58,85 @@
 
       <div class="section installation">
         <div class="section-content">
-          <h2 class="section-title">Installation</h2>
-          <p>You can install RhythmMeister via bower.</p><p>Just use <strong>bower install rhythmmeister --save</strong>.<br>Afterwards you can include the _rhythmmeister.scss.</p>
-          <p>However bower is not needed to use RhythmMeister, it would be good to check it out, but you can always just download the stylesheets from <a href="https://github.com/danielbeeke/rhythmmeister">github</a>.</p>
+          <h2 class="section-title">Installation via npm</h2>
+          <p>You can install RhythmMeister via npm.<br><strong>npm install rhythmmeister --save-dev</strong></p>
         </div>
         <div class="section-image"></div>
       </div>
 
-      <div class="section initialisation">
+
+        <div class="section json-presets">
+            <div class="section-content">
+                <h2 class="section-title">rhythmmeister.json</h2>
+                <p>You need to create file like on the left. This is what you need to inject in the postCSS plugin. An example about configuring postCSS is about to follow but first things first.</p>
+                <p>RhythmMeister lets you use <strong>font-preset: [font-name];</strong></p>
+                <p>For the grid we need to have a row size defined by <em>document-row-size</em>.</p>
+                <p>All the css properties you add to a font preset will be copied where you use it. It has two special properties: <strong>rows</strong> and <strong>base-line-percentage</strong>.</p>
+                <p><strong>Rows</strong> is used for the number of rows a text line may span vertically. It sets the line-height.</p>
+                <p><strong>Base-line-percentage</strong> is used for putting the text on the grid. You have to figure this out manually. The system is clever enough that you only have to do this only once per font weight and font face combination.</p>
+            </div>
+            <div class="section-code" id="code-editor-1">
+<pre>
+{
+    "document-row-size": "8px",
+    "presets": {
+        "s": {
+            "rows": 3,
+            "base-line-percentage": 0.81,
+            "font-family": "'Open Sans', serif",
+            "font-weight": 400,
+            "font-size": "16px",
+            "font-style": "normal"
+        },
+        "m": {
+            "rows": 3,
+            "base-line-percentage": 0.81,
+            "font-family": "'Open Sans', serif",
+            "font-weight": 400,
+            "font-size": "18px",
+            "font-style": "normal"
+        },
+        "l": {
+            "rows": 5,
+            "base-line-percentage": 0.87,
+            "font-family": "'Open Sans', serif",
+            "font-weight": 400,
+            "font-size": "28px",
+            "letter-spacing": "-.2px",
+            "font-style": "normal"
+        },
+        "xl": {
+            "rows": 12,
+            "base-line-percentage": 0.875,
+            "font-family": "'Open Sans', serif",
+            "font-weight": 600,
+            "font-size": "74px",
+            "letter-spacing": ".4px",
+            "font-style": "normal"
+        },
+        "xxxl": {
+            "rows": 12,
+            "base-line-percentage": 0.73,
+            "font-family": "'Open Sans', serif",
+            "font-weight": 600,
+            "font-size": "154px",
+            "letter-spacing": ".4px",
+            "font-style": "normal"
+        }
+    }
+}</pre>
+            </div>
+        </div>
+
+
+        <div class="section initialisation">
         <div class="section-content">
           <h2 class="section-title">Initialisation</h2>
-          <p>For RhythmMeister to work you need to set to variables. The first is $document-row-size, this one tells what the height of your vertical grid is. The second variable is a map of all your fonts and their properties.</p>
-          <p>It will be a little bit difficult to find the baseline, because the baseline will be the percentage from the font object from the top of the object till the baseline. This will be different each time you change the font size or the rows.</p>
-          <p>With the rows you can set how much rows it should take to render the font.</p>
+          <p>RhythmMeister is a <a href="http://postcss.org/">postCSS</a> plugin. With a small trick we make it possible to reload the rhythmmeister.json file on each change.</p>
+            <p>This is nice for getting the right base-line-percentage for font presets.</p>
         </div>
         <div class="section-code">
-          <pre style="margin: 0;"><span style="color: orangered; font-weight: bold">$font-presets</span><span style="color: #ffffff">:</span>  <span style="color: #ffffff">(</span>
-  <span style="color: orangered; font-weight: bold">s</span><span style="color: #ffffff">:</span> <span style="color: #ffffff">(</span>
-    <span style="color: orangered; font-weight: bold">font-size</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">15</span><span style="color: #cdcaa9; font-weight: bold">px</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">base-line</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0.880</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">rows</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">1</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">font-weight</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">300</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">text-indent</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">font-style</span><span style="color: #ffffff">:</span> <span style="color: #0086d2">normal</span>
-  <span style="color: #ffffff">),</span>
-  <span style="color: orangered; font-weight: bold">m</span><span style="color: #ffffff">:</span> <span style="color: #ffffff">(</span>
-    <span style="color: orangered; font-weight: bold">font-size</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">32</span><span style="color: #cdcaa9; font-weight: bold">px</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">base-line</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0.880</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">rows</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">2</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">font-weight</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">300</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">text-indent</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span>
-    <span style="color: orangered; font-weight: bold">font-style</span><span style="color: #ffffff">:</span> <span style="color: #0086d2">normal</span>
-  <span style="color: #ffffff">),</span>
-<span style="color: #ffffff">);</span>
-</pre>
+            <pre></pre>
         </div>
       </div>
 
@@ -95,18 +146,8 @@
           <p>You can use this to visualize the baseline grid. See our <a href="https://github.com/danielbeeke/rhythmmeister/blob/gh-pages-source/app/scripts/main.js">javascript</a> and our <a href="https://github.com/danielbeeke/rhythmmeister/blob/gh-pages-source/app/styles/components/_visual-helpers.scss">helpers sass</a>.</p>
           <p>You can press CTRL + \ to see it on the whole page.</p>
         </div>
-        <div class="section-image">
-        </div>
-      </div>
-
-      <div class="section helper-visualize">
-        <div class="section-content">
-          <h2 class="section-title">visualize-vertical-rhythm()</h2>
-          <p>You can use this one to visualize the font elements while developing. See our <a href="https://github.com/danielbeeke/rhythmmeister/blob/gh-pages-source/app/scripts/main.js">javascript</a> and our <a href="https://github.com/danielbeeke/rhythmmeister/blob/gh-pages-source/app/styles/components/_visual-helpers.scss">helpers sass</a>.</p>
-          <p>You can press CTRL + ' to see it on all the text elements on this page.</p>
-        </div>
-        <div class="section-image">
-          <div class="letters"><span class="letters-inner">Lorem ipsum</span></div>
+        <div class="section-code">
+            <pre></pre>
         </div>
       </div>
 
@@ -117,17 +158,7 @@
           <p>The first for four parameters are unitless. You just need to supply a number. The font variant needs to be a key out of the $font-presets variable. The last two are fixes to substract the border of the margin. You just need to supply the pixels to it.</p>
         </div>
         <div class="section-code">
-          <pre> <span style="color: #fb660a; font-weight: bold">@include</span><span style="color: #ffffff"> vertical-rhythm(</span>
-  <span style="color: orangered; font-weight: bold">$padding-top</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span>
-  <span style="color: orangered; font-weight: bold">$padding-bottom</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span>
-  <span style="color: orangered; font-weight: bold">$margin-top</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span>
-  <span style="color: orangered; font-weight: bold">$margin-bottom</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span>
-  <span style="color: orangered; font-weight: bold">$font-variant</span><span style="color: #ffffff">:</span> <span style="color: #0086d2">&#39;&#39;</span><span style="color: #ffffff">,</span>
-  <span style="color: orangered; font-weight: bold">$border-top-width</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0</span><span style="color: #ffffff">,</span>
-  <span style="color: orangered; font-weight: bold">$border-bottom-width</span><span style="color: #ffffff">:</span> <span style="color: #0086f7; font-weight: bold">0</span>
-<span style="color: #ffffff">);</span>
-</pre>
-
+          <pre></pre>
         </div>
       </div>
 
@@ -135,15 +166,5 @@
     </main>
   </div>
 
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="/bower_components/jquery/dist/jquery.js"></script>
-    <script src="/bower_components/jquery.hotkeys/jquery.hotkeys.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-    
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
   </body>
 </html>

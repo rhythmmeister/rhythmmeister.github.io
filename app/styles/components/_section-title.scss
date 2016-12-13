@@ -1,6 +1,7 @@
 .section-title {
   font-preset: l;
-  padding-bottom: 1rs;
+  //padding-bottom: 1rs;
+  margin-bottom: 1rs;
   position: relative;
 
   border-bottom: 2px solid orangered;
@@ -20,7 +21,7 @@
     left: -2rs;
     transform: translateX(-100%);
     padding: 0;
-    bottom: 1rs;
+    bottom: 0rs;
     position: absolute;
   }
 }
