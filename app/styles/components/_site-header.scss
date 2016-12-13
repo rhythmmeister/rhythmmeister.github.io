@@ -24,8 +24,15 @@
     clear: left;
   }
 
+  h3.suffix {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 1rs;
+  }
+
   h1 {
-    @include grid-span(8, 1);
+    float: left;
+    width: 60%;
     clear: none;
   }
 

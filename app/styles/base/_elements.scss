@@ -19,12 +19,6 @@ body {
 
 h1, h2, h3, h4, p {
   margin: 0;
-
-  &.suffix {
-    display: inline-block;
-    vertical-align: top;
-    margin-left: 1rs;
-  }
 }
 
 h1 {
@@ -59,10 +53,6 @@ p {
   box-sizing: border-box;
 }
 
-::selection {
-  background: rgba(orangered, .4);
-}
-
 *:focus {
   outline: none;
 }
@@ -74,11 +64,3 @@ p {
 a {
   color: orangered;
 }
-//
-//pre {
-//  margin: 0;
-//  padding: 0;
-//  width: 100%;
-//  float: left;
-//  height: auto;
-//}

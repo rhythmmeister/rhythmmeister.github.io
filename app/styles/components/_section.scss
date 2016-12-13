@@ -7,16 +7,21 @@
 
 .section:nth-child(odd) {
   .section-content {
-    @include grid-span(5, 1);
-    clear: both;
+    width: 40%;
+    float: left;
+    clear: left;
   }
 
   .section-code {
-    @include grid-span(5, 8);
+    width: 40%;
+    float: right;
+    clear: right;
   }
 
   .section-image {
-    @include grid-span(5, 8);
+    width: 40%;
+    float: right;
+    clear: right;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -27,16 +32,21 @@
 
 .section:nth-child(even) {
   .section-content {
-    @include grid-span(5, 8);
-    clear: both;
+    width: 40%;
+    float: right;
+    clear: right;
   }
 
   .section-code {
-    @include grid-span(5, 1);
+    width: 40%;
+    float: left;
+    clear: both;
   }
 
   .section-image {
-    @include grid-span(5, 1);
+    width: 40%;
+    float: left;
+    clear: both;
     position: absolute;
     top: 0;
     bottom: 0;

@@ -16,24 +16,6 @@ html {
   }
 }
 
-body {
-  &:after {
-    z-index: 99;
-    position: fixed;
-    content: '';
-    opacity: 0;
-    top: 0;
-    left: 50%;
-    pointer-events: none;
-    transform: translateX(-50%);
-    transition: opacity $speed $easing;
-    height: 100%;
-    max-width: $max-width;
-    width: 100%;
-    @include background-grid($color: rgba(green, .3));
-  }
-}
-
 html {
   &.has-visible-vertical-rhythm-grid {
     &:before {

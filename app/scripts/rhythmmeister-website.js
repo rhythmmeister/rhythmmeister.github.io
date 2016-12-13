@@ -3,18 +3,11 @@ import 'hotkeys';
 import ace from 'ace';
 import 'ace/theme-monokai';
 import 'ace/mode-javascript';
+import postcss from 'postcss';
 
 $(function() {
     $(document).bind('keydown', 'ctrl+\\', function () {
         toggleHtmlClass('has-visible-vertical-rhythm-grid');
-    });
-
-    $(document).bind('keydown', 'ctrl+\'', function () {
-        toggleHtmlClass('has-visible-vertical-rhythm-helpers');
-    });
-
-    $(document).bind('keydown', 'ctrl+;', function () {
-        toggleHtmlClass('has-visible-horizontal-grid');
     });
 
     function toggleHtmlClass(className) {
