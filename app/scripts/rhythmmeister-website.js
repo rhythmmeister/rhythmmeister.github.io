@@ -7,10 +7,6 @@ import postcss from 'postcss';
 import rhythmmeister from 'rhythmmeister';
 import nested from 'postcss-nested';
 
-window.process = {
-    version: '8.0.0'
-};
-
 $(function() {
     var cssStyles;
 
