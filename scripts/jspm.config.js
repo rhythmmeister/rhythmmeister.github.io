@@ -1,4 +1,5 @@
 SystemJS.config({
+  production: true,
   paths: {
     "npm:": "jspm_packages/npm/",
     "github:": "jspm_packages/github/"
@@ -6,7 +7,7 @@ SystemJS.config({
   browserConfig: {
     "baseURL": "/",
     "paths": {
-      "rhythmmeister-website/": "app/scripts/"
+      "rhythmmeister-website/": "scripts/"
     }
   },
   nodeConfig: {

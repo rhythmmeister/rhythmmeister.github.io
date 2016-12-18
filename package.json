@@ -51,12 +51,12 @@
     "name": "rhythmmeister-website",
     "main": "rhythmmeister-website.js",
     "directories": {
-      "lib": ".app/src",
-      "dist": ".app/dist",
-      "baseURL": "app"
+      "lib": ".src",
+      "dist": "./dist",
+      "baseURL": "/"
     },
     "configFiles": {
-      "jspm": "app/scripts/jspm.config.js"
+      "jspm": "scripts/jspm.config.js"
     },
     "dependencies": {
       "ace": "github:ajaxorg/ace-builds@^1.2.6",
