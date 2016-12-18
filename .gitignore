@@ -5,5 +5,5 @@ bower_components
 test/bower_components
 .idea
 .publish
-app/jspm_packages/github
-app/jspm_packages/npm
+jspm_packages/github
+jspm_packages/npm
