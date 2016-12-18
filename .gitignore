@@ -6,3 +6,5 @@ test/bower_components
 .idea
 .publish
 app/jspm_packages
+app/build.js
+app/build.js.map

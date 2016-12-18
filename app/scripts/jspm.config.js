@@ -37,6 +37,7 @@ SystemJS.config({
     "github:*/*.json"
   ],
   map: {
+    "datauri": "npm:datauri@1.0.5",
     "assert": "npm:jspm-nodelibs-assert@0.2.0",
     "buffer": "npm:jspm-nodelibs-buffer@0.2.1",
     "constants": "npm:jspm-nodelibs-constants@0.2.0",
@@ -54,7 +55,7 @@ SystemJS.config({
     "postcss-nested": "npm:postcss-nested@1.0.0",
     "postcss-nesting": "npm:postcss-nesting@2.3.1",
     "process": "npm:jspm-nodelibs-process@0.2.0",
-    "rhythmmeister": "npm:rhythmmeister@1.0.0",
+    "rhythmmeister": "npm:rhythmmeister@1.0.1",
     "stream": "npm:jspm-nodelibs-stream@0.2.0",
     "string_decoder": "npm:jspm-nodelibs-string_decoder@0.2.0",
     "util": "npm:jspm-nodelibs-util@0.2.1",
@@ -293,14 +294,8 @@ SystemJS.config({
         "util-deprecate": "npm:util-deprecate@1.0.2"
       }
     },
-    "npm:rhythmmeister@1.0.0": {
-      "map": {
-        "datauri": "npm:datauri@1.0.5",
-        "parse-unit": "npm:parse-unit@1.0.1",
-        "process": "npm:jspm-nodelibs-process@0.2.0"
-      }
-    },
     "npm:datauri@1.0.5": {
+      "main": "module",
       "map": {
         "mimer": "npm:mimer@0.2.1",
         "image-size": "npm:image-size@0.3.5",
@@ -316,6 +311,12 @@ SystemJS.config({
     "npm:postcss-nested@1.0.0": {
       "map": {
         "postcss": "npm:postcss@5.2.6"
+      }
+    },
+    "npm:rhythmmeister@1.0.1": {
+      "map": {
+        "parse-unit": "npm:parse-unit@1.0.1",
+        "datauri": "npm:datauri@1.0.5"
       }
     }
   }

@@ -60,6 +60,7 @@
     },
     "dependencies": {
       "ace": "github:ajaxorg/ace-builds@^1.2.6",
+      "datauri": "npm:datauri@^1.0.5",
       "jeresig/jquery.hotkeys": "github:jeresig/jquery.hotkeys@^0.2.0",
       "jquery": "npm:jquery@^3.1.1",
       "nodelibs": "github:jspm/nodelibs@^0.1.9",
