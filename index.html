@@ -16,7 +16,7 @@
 
       <script src="jspm_packages/system.js"></script>
       <script src="scripts/jspm.config.js"></script>
-      <script src="build.js"></script>
+
       <script>
           SystemJS.import('scripts/rhythmmeister-website.js');
       </script>
@@ -65,15 +65,15 @@
         <div class="section json-presets">
             <div class="section-content">
                 <h2 class="section-title">rhythmmeister.json</h2>
-                <p>You need to create file like on the left. This is what you need to inject in the postCSS plugin. An example about configuring postCSS is about to follow but first things first.</p>
-                <p>RhythmMeister lets you use <strong>font-preset: [font-name];</strong></p>
+                <p>You need to create a file that holds your font presets. This is what you need to inject in the postCSS plugin. An example about configuring postCSS is about to follow but first things first.</p>
                 <p>For the grid we need to have a row size defined by <em>document-row-size</em>.</p>
+                <p>Next come all the font presets you want to use.</p>
                 <p>All the css properties you add to a font preset will be copied where you use it. It has two special properties: <strong>rows</strong> and <strong>base-line-percentage</strong>.</p>
                 <p><strong>Rows</strong> is used for the number of rows a text line may span vertically. It sets the line-height.</p>
                 <p><strong>Base-line-percentage</strong> is used for putting the text on the grid. You have to figure this out manually. The system is clever enough that you only have to do this only once per font weight and font face combination.</p>
             </div>
-            <div class="section-code" id="code-editor-1">
-<pre>
+            <div class="section-code"><h3 class="code-title">Try it out, it will change this site!</h3>
+<pre id="code-editor-1">
 {
     "document-row-size": "8px",
     "presets": {
@@ -132,20 +132,76 @@
           <p>RhythmMeister is a <a href="http://postcss.org/">postCSS</a> plugin. With a small trick we make it possible to reload the rhythmmeister.json file on each change.</p>
             <p>This is nice for getting the right base-line-percentage for font presets.</p>
         </div>
-        <div class="section-code">
-            <pre></pre>
-        </div>
+            <div class="section-code"><h3 class="code-title">Gulpfile.js</h3>
+                <pre id="code-editor-2">
+
+var postcss = require('gulp-postcss');
+var gulp = require('gulp');
+var autoprefixer = require('autoprefixer');
+var rhythmmeister = require('rhythmmeister');
+var path = require('path');
+
+gulp.task('css', function () {
+    var fontPresets = rhythmmeister.load(
+        path.resolve('./app/rhythmmeister')
+    );
+
+    var processors = [
+        rhythmmeister.processor(fontPresets),
+        autoprefixer({browsers: ['last 1 version']})
+    ];
+    return gulp.src('./src/*.css')
+        .pipe(postcss(processors))
+        .pipe(gulp.dest('./dest'));
+});</pre>
+            </div>
       </div>
 
       <div class="section helper-visualize-grid">
         <div class="section-content">
-          <h2 class="section-title">vertical-rhythm-grid()</h2>
-          <p>You can use this to visualize the baseline grid. See our <a href="https://github.com/danielbeeke/rhythmmeister/blob/gh-pages-source/app/scripts/main.js">javascript</a> and our <a href="https://github.com/danielbeeke/rhythmmeister/blob/gh-pages-source/app/styles/components/_visual-helpers.scss">helpers sass</a>.</p>
-          <p>You can press CTRL + \ to see it on the whole page.</p>
+          <h2 class="section-title">vertical-rhythm-grid</h2>
+          <p>You can use this to visualize the baseline grid. See our <a href="https://github.com/rhythmmeister/rhythmmeister.github.io/blob/master/scripts/rhythmmeister-website.js#L24">javascript</a>.</p>
+          <p>You can press CTRL + \ to see it work.</p>
+          <p><strong>vertical-rhythm-grid:<br>#000000 #ffffff #bbb #ffffff 1px 4;</strong></p>
+          <p>First parameter is the first color of the primary stripes.
+          Second parameter is the second color of the primary stripes.
+          Third parameter is the first color of the secondary stripes.
+          Fourth parameter is the second color of the secondary stripes.
+          Fifth parameter is the width of the color parts.
+          Sixth parameter is how many secondary stripes are drawn before starting over.</p>
         </div>
-        <div class="section-code">
-            <pre></pre>
-        </div>
+          <div class="section-code"><h3 class="code-title">The css for the grid helper</h3>
+              <pre id="code-editor-3">
+
+html {
+  &:before {
+    vertical-rhythm-grid: #000000 #ffffff #bbb #ffffff 1px 4;
+    opacity: 0;
+    z-index: 100;
+    position: absolute;
+    content: '';
+    top: 0;
+    min-height: 100vh;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity .4s ease-in-out;
+    pointer-events: none;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+html {
+  &.has-visible-vertical-rhythm-grid {
+    &:before {
+      opacity: .7;
+    }
+  }
+}
+              </pre>
+          </div>
+
+
       </div>
 
       <div class="section vertical-rhythm">
@@ -154,9 +210,10 @@
           <p>This is the main function of RhythmMeister, you need to use this for setting padding and margins on font objects (h1, h2,  span, p, etc). The reason all these inputs need to be in one function is because we use the padding for our trick and maybe you still want to use it for adding extra rows than we need to add the rows to the small padding.</p>
           <p>The first for four parameters are unitless. You just need to supply a number. The font variant needs to be a key out of the $font-presets variable. The last two are fixes to substract the border of the margin. You just need to supply the pixels to it.</p>
         </div>
-        <div class="section-code">
-          <pre></pre>
-        </div>
+
+          <div class="section-code">
+              <pre></pre>
+          </div>
       </div>
 
 

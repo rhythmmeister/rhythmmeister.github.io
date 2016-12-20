@@ -46,6 +46,11 @@ h4 {
     padding-top: 1rs;
 }
 
+pre {
+    height: 100%;
+    margin-top: 1rs;
+}
+
 p {
     font-preset: s;
     margin-bottom: 1rs;
@@ -179,7 +184,7 @@ a {
   .section-code {
     width: 40%;
     float: left;
-    clear: both;
+    clear: left;
   }
 
   .section-image {
@@ -194,8 +199,7 @@ a {
 }
 
 .section-code {
-  margin-top: 7rs;
-  overflow: auto;
+  /*margin-top: 7rs;*/
 }
 
 .section.json-presets {
@@ -203,6 +207,19 @@ a {
     height: 56rs;
   }
 }
+
+.section.initialisation {
+    .section-code {
+        height: 41rs;
+    }
+}
+
+.section.helper-visualize-grid {
+    .section-code {
+        height: 50rs;
+    }
+}
+
 
 .section.introduction .section-image {
   .baseline-text {
@@ -404,4 +421,10 @@ html {
       opacity: .7;
     }
   }
+}
+
+.code-title {
+    margin-top: 2rs;
+    font-preset: m;
+    font-style: italic;
 }
