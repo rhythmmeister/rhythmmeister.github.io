@@ -7,3 +7,5 @@ test/bower_components
 .publish
 jspm_packages/github
 jspm_packages/npm
+!jspm_packages/npm/systemjs-plugin-babel@0.0.17.json
+!jspm_packages/github/ajaxorg/ace-builds@1.2.6/worker-javascript.js

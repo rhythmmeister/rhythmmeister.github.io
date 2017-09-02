@@ -7,6 +7,7 @@ import 'ace/mode-scss';
 import postcss from 'postcss';
 import rhythmmeister from 'rhythmmeister';
 import nested from 'postcss-nested';
+import 'ace/worker-javascript';
 
 $(function() {
     var cssStyles;
